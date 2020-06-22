@@ -1,0 +1,49 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- name_entry
+- company
+- choose
+- facebook
+entities:
+- name
+- fb
+- g
+- az
+- ms
+slots:
+  name:
+    type: text
+responses:
+  utter_greet:
+  - text: Hey! Hope you are doing good. I am your interview buddy. I may need few
+      details before we proceed. Please enter your surname in the chatbot.
+  utter_name_collected:
+  - buttons:
+    - payload: '/choose{"company": "fb"}'
+      title: Facebook
+    - payload: '/choose{"company": "g"}'
+      title: Google
+    - payload: '/choose{"company": "az"}'
+      title: Amazon
+    - payload: '/choose{"company": "ms"}'
+      title: Microsoft
+    text: Welcome {name}! So let's get started.Please select the company for which
+      you want to prepare
+  utter_choose_fb:
+  - buttons:
+    - payload: /choose
+      title: "Shuffle"
+    - payload: /choose
+      title: "DSA"
+    text: Choose from below
+  utter_goodbye:
+  - text: Bye
+actions:
+- utter_greet
+- utter_name_collected
+- utter_choose_fb
+- utter_goodbye
